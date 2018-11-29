@@ -427,11 +427,11 @@ func makeAccountManager(conf *Config) (*accounts.Manager, string, error) {
 	// Assemble the account manager and supported backends
 	backends := []accounts.Backend{}
 	if len(conf.ExternalSigner) > 0 {
-		if extapi,err := external.NewExternalBackend(conf.ExternalSigner); err == nil{
+		if extapi, err := external.NewExternalBackend(conf.ExternalSigner); err == nil {
 			backends = append(backends, extapi)
 		}
 	}
-	if len(backends) == 0{
+	if len(backends) == 0 {
 		// For now, we're using EITHER external signer OR local signers.
 		// If/when we implement some form of lockfile for USB and keystore wallets,
 		// we can have both, but it's very confusing for the user to see the same
@@ -452,7 +452,6 @@ func makeAccountManager(conf *Config) (*accounts.Manager, string, error) {
 			}
 		}
 	}
-
 
 	return accounts.NewManager(backends...), ephemeral, nil
 }
